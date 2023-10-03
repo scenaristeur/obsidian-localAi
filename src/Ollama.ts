@@ -1,7 +1,7 @@
 import { kebabCase } from "service/kebabCase";
 import { Editor, Notice, Plugin, requestUrl } from "obsidian";
 import { OllamaSettingTab } from "OllamaSettingTab";
-import { DEFAULT_SETTINGS } from "data/defaultSettings-fr";
+import { DEFAULT_SETTINGS } from "data/defaultSettings";
 import { OllamaSettings } from "model/OllamaSettings";
 
 export class Ollama extends Plugin {
@@ -25,29 +25,53 @@ export class Ollama extends Plugin {
           const cursorPosition = editor.getCursor();
 
           editor.replaceRange("✍️", cursorPosition);
-
+          const headers = {
+            "Content-Type": "application/json"
+          }
           requestUrl({
             method: "POST",
-            url: `${this.settings.ollamaUrl}/api/generate`,
+            //url: `${this.settings.ollamaUrl}/api/generate`,
+            url: "http://localhost:8080/v1/images/generations",
             body: JSON.stringify({
-              prompt: command.prompt + "\n\n" + text,
-              model: command.model,
-              options: {
-                temperature: command.temperature || 0.2,
-              },
+              prompt: text,
+              size: "256x256"
+              //  prompt: command.prompt + "\n\n" + text,
+              // model: command.model,
+              // options: {
+              //   temperature: command.temperature || 0.2,
+              // },
             }),
+            headers: headers
           })
             .then((response) => {
-              const steps = response.text
-                .split("\n")
-                .filter((step) => step && step.length > 0)
-                .map((step) => JSON.parse(step));
+              console.log("LocalAI response", response)
 
+              const json = response.json
+
+              console.log("json",json)
+              const data = json.data
+              console.log("data",data)
+              const zero = data[0]
+              console.log("zero", zero)
+              const replacement = /*text +*/ '\n![' + text + '](' + zero.url + ')\n'
+              console.log(replacement)
+              // const steps = response.text
+              //   .split("\n")
+              //   .filter((step) => step && step.length > 0)
+              //   .map((step) => JSON.parse(step));
+
+              // editor.replaceRange(
+              //   steps
+              //     .map((step) => step.response)
+              //     .join("")
+              //     .trim(),
+              //   cursorPosition,
               editor.replaceRange(
-                steps
-                  .map((step) => step.response)
-                  .join("")
-                  .trim(),
+                replacement,
+                // steps
+                //   .map((step) => step.response)
+                //   .join("")
+                //   .trim(),
                 cursorPosition,
                 {
                   ch: cursorPosition.ch + 1,
@@ -67,7 +91,7 @@ export class Ollama extends Plugin {
     });
   }
 
-  onunload() {}
+  onunload() { }
 
   async loadSettings() {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());

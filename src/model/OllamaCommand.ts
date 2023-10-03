@@ -3,4 +3,5 @@ export interface OllamaCommand {
   prompt: string;
   model: string;
   temperature?: number;
+  size?: string
 }

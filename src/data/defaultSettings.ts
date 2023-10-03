@@ -1,8 +1,15 @@
 import { OllamaSettings } from "model/OllamaSettings";
 
 export const DEFAULT_SETTINGS: OllamaSettings = {
-  ollamaUrl: "http://localhost:11434",
+  ollamaUrl: "http://localhost:8080/v1/images/generations",
   commands: [
+    {
+      name: "Generate an image",
+      prompt:
+        "A cute baby sea otter.",
+      model: "stablediffusion", // not used by localai
+      size: "256x256"
+    },
     {
       name: "Summarize selection",
       prompt:

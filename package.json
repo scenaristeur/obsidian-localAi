@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-ollama-fr",
+  "name": "obsidian-localai",
   "version": "0.0.1",
-  "description": "This is a Ollama (https://ollama.ai) plugin for Obsidian (https://obsidian.md)",
+  "description": "This is a LocalAI plugin for Obsidian (https://obsidian.md)",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -10,7 +10,7 @@
   },
   "keywords": [
     "obsidian",
-    "ollama",
+    "localai",
     "ai",
     "plugin",
     "llama"

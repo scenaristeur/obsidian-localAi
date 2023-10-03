@@ -1,9 +1,9 @@
 {
-  "id": "ollama-fr",
-  "name": "Ollama-fr",
+  "id": "localai",
+  "name": "LocalAi",
   "version": "0.0.1",
   "minAppVersion": "0.15.0",
-  "description": "Ce plugin vous permet d'utiliser Ollama en français dans Obsidian.",
+  "description": "Ce plugin vous permet d'utiliser LocalAi en français dans Obsidian.",
   "author": "scenaristeur",
   "authorUrl": "https://github.com/scenaristeur",
   "isDesktopOnly": true
