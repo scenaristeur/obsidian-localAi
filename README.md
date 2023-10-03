@@ -18,6 +18,14 @@ But you can also configure your own prompts, specify their model and temperature
 
 This requires a local installation of [Ollama](https://ollama.ai) which can currently be installed as a [MacOS app](https://github.com/jmorganca/ollama#download). By default the plugin will connect to `http://localhost:11434` - the port of the MacOS app.
 
+# must improve prompt 
+https://github.com/Kaludii/Stable-Diffusion-Prompt-Generator
+
+https://github.com/jordip/prompt-generator-api
+
+https://itnext.io/how-i-built-a-stable-diffusion-prompt-optimizer-using-openais-api-and-nextjs-bbb87f5b8de9
+
+https://stablediffusionapi.com/docs/stable-diffusion-api/text2img/
 
 
 # run Local AI
